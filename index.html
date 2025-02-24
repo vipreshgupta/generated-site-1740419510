@@ -1,0 +1,396 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="An educational website on human reproduction for adults.">
+    <title>Reproduction Education</title>
+    <style>
+        /* Reset and Basic Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f8f8f8; /* Soft White */
+            color: #333; /* Dark Gray for Text */
+        }
+
+        /* Color Scheme */
+        :root {
+            --primary-color: #e0f2f1; /* Light Teal (Background) */
+            --secondary-color: #b2dfdb; /* Teal (Accent) */
+            --highlight-color: #ffd180; /* Warm Orange */
+            --text-color: #333; /* Dark Gray */
+            --link-color: #007b8f; /* Dark Teal */
+        }
+
+        /* Header and Navigation */
+        header {
+            background-color: var(--secondary-color);
+            color: #fff;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 1rem;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: var(--highlight-color);
+            color: #333;
+        }
+
+        /* Main Content Layout */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 1rem auto;
+            padding: 1rem;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        section {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        h1, h2, h3 {
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 2rem; }
+        h3 { font-size: 1.5rem; }
+
+        p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        /* Images and Videos */
+        img, video {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 1rem auto;
+            border-radius: 4px;
+        }
+
+        /* Interactive Elements */
+        .interactive-diagram {
+            position: relative;
+            width: 100%;
+            max-width: 600px; /* Adjust as needed */
+            margin: 1rem auto;
+        }
+
+        .diagram-part {
+            cursor: pointer;
+        }
+
+        .diagram-info {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid #ccc;
+            padding: 0.5rem;
+            border-radius: 4px;
+            display: none; /* Hidden by default */
+            z-index: 100;
+        }
+
+        .diagram-part:hover + .diagram-info {
+            display: block;
+        }
+
+        /* Buttons */
+        .button {
+            background-color: var(--highlight-color);
+            color: var(--text-color);
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .button:hover {
+            background-color: #ffb74d;
+        }
+
+        /* Quiz Styles */
+        .quiz-container {
+            border: 1px solid #ddd;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+        }
+
+        .quiz-question {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .quiz-options label {
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            background-color: var(--secondary-color);
+            color: #fff;
+        }
+
+        /* Form Styles */
+        form {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+
+            nav ul li {
+                display: block;
+                margin: 0.5rem 0;
+            }
+            .interactive-diagram{
+                max-width: 90%;
+            }
+        }
+        /* Accessibility */
+        /* Ensure sufficient contrast */
+        body, input, select, textarea, button {
+            color: var(--text-color);
+            background-color: var(--primary-color);
+        }
+
+        /* ARIA attributes (example) */
+        [role="button"] {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#diagrams">Diagrams</a></li>
+                <li><a href="#videos">Videos</a></li>
+                <li><a href="#exercises">Exercises</a></li>
+                <li><a href="#quiz">Quiz</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section id="home">
+            <h1>Welcome to Reproduction Education</h1>
+            <p>This website provides comprehensive information about human reproduction, designed for adults. Explore the various sections to learn more about anatomy, physiology, fertilization, pregnancy, and reproductive health.</p>
+            <img src="https://picsum.photos/id/1080/800/400" alt="Placeholder image of cells" aria-label="An image depicting cells related to reproduction">
+        </section>
+
+        <section id="about">
+            <h2>About This Website</h2>
+            <p>This website was created to provide a clear, accessible, and informative resource on human reproduction.  It is intended for educational purposes and is not a substitute for professional medical advice.  We strive to present accurate and up-to-date information, but always consult with a healthcare provider for personalized guidance.</p>
+        </section>
+
+        <section id="diagrams">
+            <h2>Interactive Diagrams</h2>
+            <p>Explore the interactive diagrams below to learn more about the male and female reproductive systems.</p>
+
+            <div class="interactive-diagram">
+                <img src="https://picsum.photos/id/237/600/400" alt="Diagram of the Male Reproductive System" usemap="#male-diagram">
+                <map name="male-diagram">
+                    <area shape="rect" coords="50,50,100,100" alt="Testes" title="Testes" href="#" onclick="showInfo('Testes: Produce sperm and testosterone.')">
+                    <!-- Add more areas for other parts -->
+                </map>
+                <div class="diagram-info" id="testes-info">Testes: Produce sperm and testosterone.</div>
+            </div>
+
+            <div class="interactive-diagram">
+                <img src="https://picsum.photos/id/238/600/400" alt="Diagram of the Female Reproductive System" usemap="#female-diagram">
+                <map name="female-diagram">
+                    <area shape="rect" coords="150,50,200,100" alt="Ovaries" title="Ovaries" href="#" onclick="showInfo('Ovaries: Produce eggs and hormones like estrogen and progesterone.')">
+                    <!-- Add more areas for other parts -->
+                </map>
+                <div class="diagram-info" id="ovaries-info">Ovaries: Produce eggs and hormones.</div>
+            </div>
+        </section>
+
+        <section id="videos">
+            <h2>Educational Videos</h2>
+            <p>Watch these videos to gain a deeper understanding of the reproductive process.</p>
+            <video controls width="640" height="360" aria-label="Video explaining the process of fertilization">
+                <source src="https://www.example.com/fertilization.mp4" type="video/mp4">
+                Your browser does not support the video tag.  See transcript below.
+            </video>
+            <p><strong>Video Transcript:</strong> [Placeholder transcript - This should be a full, accurate transcript of the video's audio.]</p>
+
+            <!-- Add more videos as needed -->
+        </section>
+
+        <section id="exercises">
+            <h2>Practical Exercises</h2>
+            <p>These exercises will help you apply what you've learned.</p>
+            <p><strong>Exercise 1:</strong> Label the parts of the male and female reproductive systems on a blank diagram. (Diagrams can be downloaded below)</p>
+            <a href="https://example.com/male_diagram.pdf" download class="button" aria-label="Download male reproductive system diagram">Download Male Diagram</a>
+            <a href="https://example.com/female_diagram.pdf" download class="button" aria-label="Download female reproductive system diagram">Download Female Diagram</a>
+
+            <p><strong>Exercise 2:</strong> Research and write a short paragraph explaining the menstrual cycle.</p>
+        </section>
+
+        <section id="quiz">
+            <h2>Test Your Knowledge</h2>
+            <div class="quiz-container">
+                <div class="quiz-question">1. What is the primary function of the testes?</div>
+                <div class="quiz-options">
+                    <label><input type="radio" name="q1" value="a"> a) Produce urine</label>
+                    <label><input type="radio" name="q1" value="b"> b) Produce sperm</label>
+                    <label><input type="radio" name="q1" value="c"> c) Store sperm</label>
+                    <label><input type="radio" name="q1" value="d"> d) Produce seminal fluid</label>
+                </div>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-question">2. Where does fertilization typically occur?</div>
+                <div class="quiz-options">
+                    <label><input type="radio" name="q2" value="a"> a) Ovary</label>
+                    <label><input type="radio" name="q2" value="b"> b) Uterus</label>
+                    <label><input type="radio" name="q2" value="c"> c) Fallopian tube</label>
+                    <label><input type="radio" name="q2" value="d"> d) Vagina</label>
+                </div>
+            </div>
+            <button class="button" onclick="checkAnswers()">Submit Quiz</button>
+            <div id="quiz-results"></div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p>If you have any questions or feedback, please feel free to contact us.</p>
+            <form id="contact-form" action="#" method="post">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required aria-required="true">
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required aria-required="true">
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required aria-required="true"></textarea>
+
+                <button type="submit" class="button">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Reproduction Education. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function showInfo(info) {
+            // Basic implementation - ideally, use a more robust method for showing/hiding info
+            alert(info);
+        }
+
+        function checkAnswers() {
+            let score = 0;
+            const q1Answer = document.querySelector('input[name="q1"]:checked')?.value;
+            const q2Answer = document.querySelector('input[name="q2"]:checked')?.value;
+
+            if (q1Answer === 'b') {
+                score++;
+            }
+            if (q2Answer === 'c') {
+                score++;
+            }
+
+            document.getElementById('quiz-results').textContent = `You scored ${score} out of 2.`;
+        }
+
+        // Form submission handling (basic example - needs server-side processing)
+        document.getElementById('contact-form')?.addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Thank you for your message! (This is a placeholder - a real form would require server-side processing.)');
+            // In a real application, you would send the form data to a server.
+        });
+
+        // Image map handling (alternative to showInfo, more accessible)
+        document.addEventListener('DOMContentLoaded', function() {
+            const areas = document.querySelectorAll('area');
+            areas.forEach(area => {
+                area.addEventListener('click', function(event) {
+                    event.preventDefault(); // Prevent default link behavior
+                    const info = this.getAttribute('title'); // Use title attribute for info
+                    showInfo(info);
+                });
+                // Add keyboard accessibility
+                area.addEventListener('keydown', function(event) {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        const info = this.getAttribute('title');
+                        showInfo(info);
+                    }
+                });
+                area.setAttribute('role', 'button'); // Indicate it's interactive
+                area.setAttribute('tabindex', '0'); // Make it focusable
+            });
+        });
+    </script>
+</body>
+</html>
